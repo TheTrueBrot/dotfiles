@@ -10,7 +10,7 @@ urxvt.keysym.M-v: perl:clipboard:paste
 urxvt.url-launcher: /usr/bin/xdg-open
 urxvt.matcher.button: 1
  
-! Colors
+!Colors
 *background:   #282a36
 *foreground:   #eff0eb
 *cursorColor:  #9aedfe
