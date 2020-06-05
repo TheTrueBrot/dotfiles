@@ -1,3 +1,4 @@
+""""
 "Vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -14,23 +15,46 @@ Plugin 'zah/nim.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'preservim/nerdtree'
 Plugin 'JuliaEditorSupport/julia-vim'
+Plugin 'lervag/vimtex'
+Plugin 'arcticicestudio/nord-vim'
 
 call vundle#end()            " required
 filetype plugin indent on 
 
+colorscheme nord
 set number
 syntax on
 
+""""
+"Mapping
+"General Maps
+
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
 map <C-n> :NERDTreeToggle<CR>
+
+"Remaps For Swiss Layout
+
+map ö {
+map ä }
+map ü [
+
+"""""
+"Tabs
 
 " size of a hard tabstop
 set tabstop=4
-
 " always uses spaces instead of tab characters
 set expandtab
 
 """""
-"Nim Plugin
+"Nim
 
 fun! JumpToDef()
   if exists("*GotoDefinition_" . &filetype)
