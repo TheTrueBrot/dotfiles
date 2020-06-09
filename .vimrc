@@ -2,7 +2,7 @@
 "Vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
+ 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -14,7 +14,6 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'zah/nim.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'preservim/nerdtree'
-Plugin 'JuliaEditorSupport/julia-vim'
 Plugin 'lervag/vimtex'
 Plugin 'arcticicestudio/nord-vim'
 
@@ -27,6 +26,7 @@ syntax on
 
 """"
 "Mapping
+
 "General Maps
 
 inoremap " ""<left>
@@ -39,6 +39,9 @@ inoremap {;<CR> {<CR>};<ESC>O
 
 map <C-n> :NERDTreeToggle<CR>
 
+"Run python scripts
+map <F5> <ESC>:w<CR>:! clear; python % 
+
 "Remaps For Swiss Layout
 
 map ö {
@@ -47,35 +50,38 @@ map ü [
 
 """""
 "Tabs
-
+set smarttab
 " size of a hard tabstop
 set tabstop=4
 " always uses spaces instead of tab characters
 set expandtab
 
 """""
-"Nim
+"LaTeX
+let g:vimtex_view_general_viewer = 'mupdf'
+let g:vimtex_view_general_options
+    \ = '-reuse-instance -forward-search @tex @line @pdf'
+let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 
-fun! JumpToDef()
-  if exists("*GotoDefinition_" . &filetype)
-    call GotoDefinition_{&filetype}()
-  else
-    exe "norm! \<C-]>"
-  endif
-endf
+let g:vimtex_indent_enabled = 0
+"""""
+"YouCompleteMe Settings
 
-" Jump to tag
-nn <M-g> :call JumpToDef()<cr>
-ino <M-g> <esc>:call JumpToDef()<cr>i
+"LaTeX
+
+if !exists('g:ycm_semantic_triggers')         
+    let g:ycm_semantic_triggers = {}            
+endif
+au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 
 """""
 "Templates
 
 if has("autocmd")
-	augroup templates
-		autocmd BufNewFile *socket.py 0r ~/.vim/templates/socket_python.py
-  		autocmd BufNewFile *.c++ 0r ~/.vim/templates/skeleton.c++
-		autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.c++
-  		
-	augroup END
+    augroup templates
+        autocmd BufNewFile *socket.py 0r ~/.vim/templates/socket_python.py
+        autocmd BufNewFile *.c++ 0r ~/.vim/templates/skeleton.c++
+        autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.c++        
+    augroup END
 endif
+
