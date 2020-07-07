@@ -16,6 +16,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'preservim/nerdtree'
 Plugin 'lervag/vimtex'
 Plugin 'arcticicestudio/nord-vim'
+Plugin 'SirVer/ultisnips'
 
 call vundle#end()            " required
 filetype plugin indent on 
@@ -39,8 +40,10 @@ inoremap {;<CR> {<CR>};<ESC>O
 
 map <C-n> :NERDTreeToggle<CR>
 
-"Run python scripts
-map <F5> <ESC>:w<CR>:! clear; python % 
+"Run files
+autocmd FileType python map <F5> <ESC>:w<CR>:! clear; python %
+autocmd FileType tex map <F5> <ESC>:VimtexCompile<CR>
+
 
 "Remaps For Swiss Layout
 
@@ -50,7 +53,6 @@ map ü [
 
 """""
 "Tabs
-set smarttab
 " size of a hard tabstop
 set tabstop=4
 " always uses spaces instead of tab characters
@@ -60,10 +62,18 @@ set expandtab
 "LaTeX
 let g:vimtex_view_general_viewer = 'mupdf'
 let g:vimtex_view_general_options
-    \ = '-reuse-instance -forward-search @tex @line @pdf'
+\ = '-reuse-instance -forward-search @tex @line @pdf'
 let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 
 let g:vimtex_indent_enabled = 0
+
+"""""
+"Snippet
+
+let g:UltiSnipsExpandTrigger="qa"
+let g:UltiSnipsJumpForwardTrigger="qw"
+let g:UltiSnipsJumpBackwardTrigger="qy"
+
 """""
 "YouCompleteMe Settings
 
@@ -84,4 +94,3 @@ if has("autocmd")
         autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.c++        
     augroup END
 endif
-
