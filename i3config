@@ -162,36 +162,34 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
-
-# class                 border  bground text    indicator child_border
-client.focused          #3DA861 #3DA861 #282A36 #2E9EF4   #285577
-client.focused_inactive #282A36 #282A36 #EFF0EB #282A36   #282A36
-client.unfocused        #282A36 #282A36 #EFF0EB #292D2E   #222222
-client.urgent           #282A36 #FF5C57 #EFF0EB #FF5C57   #FF5C57
-client.placeholder      #282A36 #282A36 #EFF0EB #282A36   #282A36
-
-client.background       #EFF0EB
-
-bar {
-  colors {
-    background #282A36
-    statusline #EFF0EB
-    separator  #666666
-
-    focused_workspace  #4C7899 #285577 #EFF0EB
-    active_workspace   #333333 #222222 #EFF0EB
-    inactive_workspace #333333 #222222 #282A36
-    urgent_workspace   #2F343A #FF5C57 #EFF0EB
-    binding_mode       #2F343A #FF5C57 #EFF0EB
-  }
-  status_command i3status
-}
-
-bindsym $mod+d exec "dmenu_run -nf '#EFF0EB' -nb '#282A36' -sb '#3DA861' -sf '#282A36' -fn 'monospace-10' -p 'dmenu'"
 bindsym $mod+shift+x exec ~/.config/i3/i3lock.sh
 
 exec_always xrandr --output eDP1 --mode 1366x768
 exec_always xrandr --output HDMI2 --mode 1920x1080 --right-of eDP1
-
-
 exec_always feh --bg-scale ~/wallpapers/b.jpeg/
+
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+client.background       #F8F8F2
+
+bar {
+    status_command i3status
+    colors {
+    background #282A36
+    statusline #F8F8F2
+    separator  #44475A
+
+    focused_workspace  #44475A #44475A #F8F8F2
+    active_workspace   #282A36 #44475A #F8F8F2
+    inactive_workspace #282A36 #282A36 #BFBFBF
+    urgent_workspace   #FF5555 #FF5555 #F8F8F2
+    binding_mode       #FF5555 #FF5555 #F8F8F2
+  }
+}
+
+bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 50
