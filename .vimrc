@@ -92,5 +92,7 @@ if has("autocmd")
         autocmd BufNewFile *socket.py 0r ~/.vim/templates/socket_python.py
         autocmd BufNewFile *.c++ 0r ~/.vim/templates/skeleton.c++
         autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.c++        
+        autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex     
+        
     augroup END
 endif
